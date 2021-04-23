@@ -20,9 +20,9 @@ class Menu extends Phaser.Scene {
         // menu text configuration
         let menuConfig = {
             fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#C3B149',
-            color: '#843605',
+            fontSize: '28px Arial',
+            backgroundColor: 'orange',
+            color: 'blue',
             align: 'right',
             padding: {
                 top: 5,
@@ -33,12 +33,12 @@ class Menu extends Phaser.Scene {
         this.add.image(640,200,'bg');
         
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Yasuo Patrol', menuConfig).setOrigin(0.5);
-        menuConfig.fontSize = '18px';
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to do Sweeping Blade', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Yasuo Patrol', menuConfig).setOrigin(0.5,5);
+        menuConfig.fontSize = '18px Arial';
+        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to do Sweeping Blade', menuConfig).setOrigin(0.5,-1);
         menuConfig.backgroundColor = 'grey';
         menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5,-2);
 
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);

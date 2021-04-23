@@ -6,10 +6,10 @@ Spring 2021
 
 ---
 ### Note:
-Public GitHub repository:
+Public GitHub repository: https://kou-zhe.github.io/Rocket-Patrol-Mods/
 
 
-GitHub page:
+GitHub page: 
 
 
 
@@ -31,7 +31,7 @@ Features implemented:
  - Implement the 'FIRE' UI text from the original game (5)
  - Create a new title screen (e.g., new artwork, typography, layout) (10)
  - Create and implement a new weapon (w/ new behavior and graphics) (20)
- - 
+ - Redesign the game's artwork, UI, and sound to change its theme/aesthetic (to something other than sci-fi) (60)
 
 
 
@@ -39,11 +39,12 @@ Features implemented:
 
 ---
 ### Reference:
- - Work with Leland J
+ 
  - https://phaser.io/tutorials/making-your-first-phaser-3-game/part2
  - https://www.pikpng.com/downpngs/hRJooow_turbulence-explosion-sprite-sheet-png-clipart/
 
 ### Credit
+    - Works with Leland J
     - rift.png
     - riven.png
     - yasuo.png
@@ -52,7 +53,7 @@ Features implemented:
 
 
 ### Copyright-Free SoundFX:
- - https://y.qq.com/portal/player.html
+ - https://freepd.com/#google_vignette
  - https://www.soundboard.com/sb/sound/447950
 
 

@@ -95,6 +95,7 @@ class Play extends Phaser.Scene {
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             this.add.text(game.config.width / 2, game.config.height / 2, 'GAME OVER', scoreConfig).setOrigin(0.5);
+            this.bgm.stop();
             this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← to Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
@@ -106,12 +107,20 @@ class Play extends Phaser.Scene {
             delay: 0
         });
         this.firecount = 0;
-        this.fireText = this.add.text(borderUISize + 200, borderUISize + borderPadding + 10, 'Fire:' + this.firecount, textConfig);
+        this.fireText = this.add.text(borderUISize + 200, borderUISize + borderPadding + 10, 'Fire!' , textConfig);
         this.bgm.play();
+        
     }
 
     update() {
         // check key input for restart / menu
+        if (this.p1Rocket.isFiring){
+            this.fireText.setVisible(true);
+
+        }else {
+            this.fireText.setVisible(false);
+        }
+        
         if (this.p1Rocket.firecount) {
            
         }
