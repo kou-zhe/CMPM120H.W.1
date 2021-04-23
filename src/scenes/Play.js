@@ -15,7 +15,9 @@ class Play extends Phaser.Scene {
         this.load.spritesheet('explosion1', './assets/explosion1.png', { frameWidth: 84, frameHeight: 70, startFrame: 0, endFrame: 12 });
     }
 
-    create() { //Allow the player to control the Rocket after it's fired (5)
+    create() { 
+        this.LastBreathText = this.add.text(440, borderUISize + borderPadding + 40, 'Last Breath(R): ');
+        //Allow the player to control the Rocket after it's fired (5)
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'rift').setOrigin(0, 0);
 
@@ -51,7 +53,22 @@ class Play extends Phaser.Scene {
         });
 
         // initialize score
+
         this.p1Score = 0;
+        let textConfig = {
+            fontFamily: 'Courier',
+            fontSize: '15px',
+            //backgroundColor: '#000000',
+            color: '#843605', // color hex code: black
+            align: 'left',
+            padding: {  // set the size of the display box
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+
+
 
         // display score
         let scoreConfig = {
@@ -66,7 +83,10 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
+        this.topScoreText = this.add.text(borderUISize + 300, borderUISize + borderPadding + 10, 'Top:', scoreConfig);
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding * 2, this.p1Score, scoreConfig);
+        this.topScoreLeft = this.add.text(borderUISize + 450, borderUISize + borderPadding + 10,
+            localStorage.getItem("RocketPatrolTopScore"), scoreConfig);
 
         // GAME OVER flag
         this.gameOver = false;
@@ -85,11 +105,16 @@ class Play extends Phaser.Scene {
             loop: true,
             delay: 0
         });
+        this.firecount = 0;
+        this.fireText = this.add.text(borderUISize + 200, borderUISize + borderPadding + 10, 'Fire:' + this.firecount, textConfig);
         this.bgm.play();
     }
 
     update() {
         // check key input for restart / menu
+        if (this.p1Rocket.firecount) {
+           
+        }
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
         }
@@ -125,8 +150,21 @@ class Play extends Phaser.Scene {
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
         }
-    }
+        if (Phaser.Input.Keyboard.JustDown(keyR)) { 
+            let ships = [
+                this.ship01,
+                this.ship02,
+                this.ship03,
+                this.ship04
+            ];
 
+            let randomShip = ships[Math.floor(Math.random() * ships.length)];
+            this.p1Rocket.reset();
+            this.shipExplode(randomShip);
+        }
+        
+    }
+    
     checkCollision(rocket, ship) {
         // simple AABB checking
         if (rocket.x < ship.x + ship.width &&
@@ -153,6 +191,12 @@ class Play extends Phaser.Scene {
         // score add and repaint
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
+        this.p1Score += ship.points;
+        if (this.p1Score > localStorage.getItem("RocketPatrolTopScore")) {
+            localStorage.setItem("RocketPatrolTopScore", this.p1Score);
+            this.topScoreLeft.text = localStorage.getItem("RocketPatrolTopScore");
+        }
+        this.scoreLeft.text = this.p1Score;
         let soundFXLib = [
             '0.mp3',
             '2.mp3',
@@ -162,6 +206,7 @@ class Play extends Phaser.Scene {
         let random4SoundFX = Math.floor(Math.random() * soundFXLib.length);
         this.sound.play(soundFXLib[random4SoundFX]);
 
-        
+
+
     }
 }

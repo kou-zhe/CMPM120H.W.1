@@ -13,3 +13,4 @@ let borderPadding = borderUISize / 3;
 
 // reserve keyboard variables
 let keyF, keyR, keyLEFT, keyRIGHT;
+localStorage.setItem("RocketPatrolTopScore", 0);

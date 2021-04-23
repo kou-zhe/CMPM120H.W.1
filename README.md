@@ -26,11 +26,11 @@ Features implemented:
  - Add your own (copyright-free) background music to the Play scene (5)
  - Create a new spaceship type (w/ new artwork) that's smaller, moves faster, and is worth more points (20)
  - Create a new scrolling tile sprite for the background (5)
- - 
- - 
- - 
- - 
- - 
+ - Create 4 new explosion SFX and randomize which one plays on impact (10)
+ - Track a high score that persists across scenes and display it in the UI (5)
+ - Implement the 'FIRE' UI text from the original game (5)
+ - Create a new title screen (e.g., new artwork, typography, layout) (10)
+ - Create and implement a new weapon (w/ new behavior and graphics) (20)
  - 
 
 
@@ -39,23 +39,21 @@ Features implemented:
 
 ---
 ### Reference:
- - https://stackoverflow.com/questions/37408825/create-a-high-score-in-phaser`
- - https://stackoverflow.com/questions/39787647/switch-does-not-work-with-math-random-numbers
- - https://phaser.discourse.group/t/countdown-timer/2471/4
- - http://millionthvector.blogspot.com/p/free-sprites.html
- - https://stackoverflow.com/questions/56220214/how-to-correctly-resize-images-to-retain-quality-in-phaser-3
+ - Work with Leland J
+ - https://phaser.io/tutorials/making-your-first-phaser-3-game/part2
  - https://www.pikpng.com/downpngs/hRJooow_turbulence-explosion-sprite-sheet-png-clipart/
 
 ### Credit
-  - Works by MillionthVector:
-    - rocket2.png
-    - speedship.png
-    - smallfreighterspr.png
+    - rift.png
+    - riven.png
+    - yasuo.png
+    - explosion1.png
+    - bg.png
 
 
 ### Copyright-Free SoundFX:
- - https://mixkit.co/free-sound-effects/explosion/
- - https://mixkit.co/free-stock-music/tag/space/
+ - https://y.qq.com/portal/player.html
+ - https://www.soundboard.com/sb/sound/447950
 
 
 

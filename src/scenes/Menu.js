@@ -12,6 +12,8 @@ class Menu extends Phaser.Scene {
         this.load.audio('5.mp3', './assets/5.mp3');
         this.load.audio('3.mp3', './assets/3.mp3');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.image('bg','./assets/bg.png');
+
     }
 
     create() {
@@ -19,7 +21,7 @@ class Menu extends Phaser.Scene {
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
+            backgroundColor: '#C3B149',
             color: '#843605',
             align: 'right',
             padding: {
@@ -28,11 +30,13 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
+        this.add.image(640,200,'bg');
         
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Yasuo Patrol', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '18px';
+        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to do Sweeping Blade', menuConfig).setOrigin(0.5);
+        menuConfig.backgroundColor = 'grey';
         menuConfig.color = '#000';
         this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
 
