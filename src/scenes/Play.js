@@ -7,16 +7,17 @@ class Play extends Phaser.Scene {
         // load images/tile sprites
         this.load.image('yasuo', './assets/yasuo.png'); //5points
         this.load.image('baron', './assets/baron.png');
-        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('riven', './assets/riven.png')
+        this.load.image('rift', './assets/rift.png');
         //load bgm
-        this.load.audio('bgm', './assets/bgm.mp3') //5points bgm
+        this.load.audio('bgmgotime', './assets/bgmgotime.mp3') //5points bgm
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', { frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9 });
+        this.load.spritesheet('explosion1', './assets/explosion1.png', { frameWidth: 84, frameHeight: 70, startFrame: 0, endFrame: 12 });
     }
 
     create() { //Allow the player to control the Rocket after it's fired (5)
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'rift').setOrigin(0, 0);
 
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
@@ -33,7 +34,9 @@ class Play extends Phaser.Scene {
         this.ship01 = new Spaceship(this, game.config.width + borderUISize * 6, borderUISize * 4, 'baron', 0, 30).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'baron', 0, 20).setOrigin(0, 0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'baron', 0, 10).setOrigin(0, 0);
-
+        //add Spaceship04
+        this.ship04 = new Spaceship(this, game.config.width + borderUISize * 8, borderUISize * 4, 'riven', 0, 100).setOrigin(0, 0);
+        this.ship04.moveSpeed = 10;
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -43,7 +46,7 @@ class Play extends Phaser.Scene {
         // animation config
         this.anims.create({
             key: 'explode',
-            frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0 }),
+            frames: this.anims.generateFrameNumbers('explosion1', { start: 0, end: 12, first: 0 }),
             frameRate: 30
         });
 
@@ -75,7 +78,7 @@ class Play extends Phaser.Scene {
             this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← to Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
-        this.bgm = this.sound.add('bgm', {
+        this.bgm = this.sound.add('bgmgotime', {
             mute: false,
             volume: 0.7,
             rate: 1,
@@ -102,9 +105,14 @@ class Play extends Phaser.Scene {
             this.ship01.update();               // update spaceship (x3)
             this.ship02.update();
             this.ship03.update();
+            this.ship04.update();
         }
 
         // check collisions
+        if (this.checkCollision(this.p1Rocket, this.ship04)) {
+            this.p1Rocket.reset();
+            this.shipExplode(this.ship04);
+        }
         if (this.checkCollision(this.p1Rocket, this.ship03)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);
@@ -135,7 +143,7 @@ class Play extends Phaser.Scene {
         // temporarily hide ship
         ship.alpha = 0;
         // create explosion sprite at ship's position
-        let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
+        let boom = this.add.sprite(ship.x, ship.y, 'explosion1').setOrigin(0, 0);
         boom.anims.play('explode');             // play explode animation
         boom.on('animationcomplete', () => {    // callback after anim completes
             ship.reset();                         // reset ship position
@@ -145,7 +153,15 @@ class Play extends Phaser.Scene {
         // score add and repaint
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
+        let soundFXLib = [
+            '0.mp3',
+            '2.mp3',
+            '3.mp3',
+            '5.mp3'
+        ];
+        let random4SoundFX = Math.floor(Math.random() * soundFXLib.length);
+        this.sound.play(soundFXLib[random4SoundFX]);
 
-        this.sound.play('sfx_explosion');
+        
     }
 }

@@ -7,6 +7,10 @@ class Menu extends Phaser.Scene {
         // load audio
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
+        this.load.audio('0.mp3', './assets/0.mp3');
+        this.load.audio('2.mp3', './assets/2.mp3');
+        this.load.audio('5.mp3', './assets/5.mp3');
+        this.load.audio('3.mp3', './assets/3.mp3');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     }
 
@@ -50,7 +54,7 @@ class Menu extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
           // Expert mode
           game.settings = {
-            spaceshipSpeed: 4,
+            spaceshipSpeed: 6,
             gameTimer: 45000    
           }
           this.sound.play('sfx_select');
