@@ -10,6 +10,7 @@ Public GitHub repository: https://kou-zhe.github.io/Rocket-Patrol-Mods/
 
 
 GitHub page: 
+https://github.com/kou-zhe?tab=repositories
 
 
 
